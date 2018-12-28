@@ -33,14 +33,13 @@ def cat_vae(X,var_size,encoder_params,decoder_params,T,q,s,beta,mcmc):
     for t in range(T):
         objective_grad = grad(objective)
         subsample_ind=random.sample(range(len(X)),m)
-        losss = 0.0
         x=X[subsample_ind]
         grad_enc, grad_dec = objective_grad((encoder_params,decoder_params))
         gradientti_enc, unflatten_enc  = flatten(grad_enc)
         gradientti_dec, unflatten_dec = flatten(grad_dec)
             
-        #losss = losss + Loss_function(encoder_params, decoder_params, x,var_size,beta,mcmc) /m
-        #losses.append(losss) 
+        #loss = Loss_function(encoder_params, decoder_params, x,var_size,beta,mcmc) /m
+        #losses.append(loss) 
         
         #Update encoder
         update,me,ve = adam(gradientti_enc,me,ve,t,step_size=s)
