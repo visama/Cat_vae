@@ -7,7 +7,6 @@ Created on Thu Apr 26 15:26:06 2018
 import numpy as np
 from Cat_vae.misc_vae import neural_network,unpack_gaussian_params2,create_z2
 
-
 def softmax(x):
     return np.exp(x) / np.sum(np.exp(x), axis=0)
 
