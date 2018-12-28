@@ -77,7 +77,7 @@ def multivariate_categorical_loss(var_size,decoder_NN_output,x):
     res = 0
     paikka = 0
     for i in range(len(var_size)):
-        probs = softmax(decoder_NN_output[:,paikka:paikka+var_size[i]]) #syötä funktioon myös one hot X?
+        probs = softmax(decoder_NN_output[:,paikka:paikka+var_size[i]]) #syÃ¶tÃ¤ funktioon myÃ¶s one hot X?
         res = res + np.sum(np.log(probs)*x[:,paikka:paikka+var_size[i]])
         paikka = paikka + var_size[i]
     return(res)
@@ -92,13 +92,6 @@ def Loss_function(encoder_params, decoder_params, x,var_size,beta,mcmc_size):
     for i in range(mcmc_size):
         res = res + multivariate_categorical_loss(var_size,decoder_NN_output,x)/mcmc_size
     
-    #HUOM tässä jotain häikkää? Tsek z plotit
-    #res = 0
-    #paikka = 0
-    #for i in range(len(var_size)):
-    #    probs = softmax(decoder_NN_output[:,paikka:paikka+var_size[i]]) #syötä funktioon myös one hot X?
-    #    res = res + np.sum(np.log(probs)*x[:,paikka:paikka+var_size[i]])
-    #    paikka = paikka + var_size[i]
     return(res  - beta*KL_div)
 
         
