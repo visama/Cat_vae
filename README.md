@@ -28,7 +28,7 @@ X_train should be numpy.ndarray in one-hot representation. Var_size should be a 
 
 T is the number of times NN parameters are updated, q is proportion of data points used in mini-batch SGD and s is the step size in mini-batch SGD. Layer size is the number of nodes in NN and z_dim is dimensionality of latent dimension. Here NNs have only one hidden layer, but also multilayer NNs are possible. Beta and mcmc are optional and are by default one. Beta one corresponds original VAE. Beta controls importance of Kullback-Leibler divergence in loss function [https://openreview.net/references/pdf?id=Sy2fzU9gl] and mcmc is the number of mcmc samples used for calculation of E[log(P(X_r|z))].
 
-VAE() creates a Vae object and initializes weights for boths NNs. Fit-method updates the weights with weights, that minimize the loss function. Vae object contains method compress, which can be used for encoding data to a latent dimension z. By varying beta we can see from the plot below, how smaller beta enables latent dimension distribution to differ from standard normal distribution. Encoder maps data points of the same class close to each other. If one wants to use VAE for synthetic data generation beta should be one.
+VAE() creates a Vae object and initializes weights for boths NNs. Fit-method updates the weights with weights, that minimize the loss function. Vae object contains method compress, which can be used for encoding data to a latent dimension z. By varying beta we can see from the plot below, how smaller beta enables latent dimension distribution to differ from standard normal distribution. Encoder maps data points of the same class close to each other. If one wants to use VAE for synthetic data generation beta should be one. This is because we can create synthetic data by feeding the decoder data from multivariate normal distribution, since decoder is learned to map this kind of data.
 
 ```python
 z=vae_olio.compress(X_train)
@@ -46,8 +46,8 @@ clf = LogisticRegression(random_state=0, solver='lbfgs',multi_class='multinomial
 clf_z = LogisticRegression(random_state=0, solver='lbfgs',multi_class='multinomial').fit(X_s[:,0:21], z_train) # z_train should be vector containing the labels instead of one-hot matrix
 print("Normal training set used, accuracy: "+str(clf.score(X_test[:,0:21],y_test)))
 print("Synthetic training data used, accuracy: "+str(clf_z.score(X_test[:,0:21],y_test)))
-Normal training set used, accuracy: 0.9176882661996497
-Synthetic training used, accuracy: 0.8598949211908932
+Normal training data used, accuracy: 0.9176882661996497
+Synthetic data used, accuracy: 0.8598949211908932
 ```
 
 Based on this simple test synthetic data is somewhat usefull and conserves the structure of the original data! Perhaps by doing some hyperparameter tuning synthetic data quality could be improved. We could also inspect synthetic data quality visually by plotting the correlation matrices of both cases.
