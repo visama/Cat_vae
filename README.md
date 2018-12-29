@@ -22,4 +22,4 @@ vae_olio.fit(X_train,T,q,s,beta=1,mcmc=2)
 
 X_train should be in one-hot representation. Var_size should be a list containing number of possible events for each of the categorical variable in the training set. For Car-data [https://archive.ics.uci.edu/ml/datasets/car+evaluation] var_size is [4, 4, 4, 3, 3, 3, 4]. Car data contains 6 variables and one label with 4 possible values({'acc', 'good', 'unacc', 'vgood'}).
 
-<img src="examples/carvae_many_beta.png" width="600">
+<img src="plots/carvae_many_beta.png" width="600">
