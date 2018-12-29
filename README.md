@@ -28,7 +28,7 @@ X_train should be numpy.ndarray in one-hot representation. Var_size should be a 
 
 T is the number of times NN parameters are updated, q is proportion of data points used in mini-batch SGD and s is the step size in mini-batch SGD. Layer size is the number of nodes in NN and z_dim is dimensionality of latent dimension. Here NNs have only one hidden layer, but also multilayer NNs are possible. Beta and mcmc are optional and are by default one. Beta one corresponds original VAE. Beta controls importance of Kullback-Leibler divergence in loss function [https://openreview.net/references/pdf?id=Sy2fzU9gl] and mcmc is the number of mcmc samples used for calculation of E[log(P(X_r|z))].
 
-VAE() creates a Vae object and initializes weights for boths NNs. Fit-method updates the weights with weights, that minimize the loss function. Vae object contains method compress, which can be used for encoding data to a latent dimension z. By varying beta we can see how smaller beta enables latent dimension distribution to differ from standard normal distribution. If one wants to use VAE for synthetic data generation beta should be one.
+VAE() creates a Vae object and initializes weights for boths NNs. Fit-method updates the weights with weights, that minimize the loss function. Vae object contains method compress, which can be used for encoding data to a latent dimension z. By varying beta we can see from the plot below, how smaller beta enables latent dimension distribution to differ from standard normal distribution. Encoder maps data points of the same class close to each other. If one wants to use VAE for synthetic data generation beta should be one.
 
 ```python
 z=vae_olio.compress(X_train)
@@ -40,10 +40,10 @@ Method sample creates a sample X_s from the estimated distribution. We could use
 
 ```python
 from sklearn.linear_model import LogisticRegression
-X_s=vae_olio.sample(n) # Z sample size equals training data sample size
+X_s=vae_olio.sample(n) # X_s sample size equals training data sample size
 
 clf = LogisticRegression(random_state=0, solver='lbfgs',multi_class='multinomial').fit(X_train[:,0:21], y_train)
-clf_z = LogisticRegression(random_state=0, solver='lbfgs',multi_class='multinomial').fit(Z[:,0:21], z_train) # z_train should be vector containing the labels instead of one-hot matrix
+clf_z = LogisticRegression(random_state=0, solver='lbfgs',multi_class='multinomial').fit(X_s[:,0:21], z_train) # z_train should be vector containing the labels instead of one-hot matrix
 print("Normal training set used, accuracy: "+str(clf.score(X_test[:,0:21],y_test)))
 print("Synthetic training data used, accuracy: "+str(clf_z.score(X_test[:,0:21],y_test)))
 Normal training set used, accuracy: 0.9176882661996497
