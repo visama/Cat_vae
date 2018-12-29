@@ -22,4 +22,10 @@ vae_olio.fit(X_train,T,q,s,beta=1,mcmc=2)
 
 X_train should be in one-hot representation. Var_size should be a list containing number of possible events for each of the categorical variable in the training set. For Car-data [https://archive.ics.uci.edu/ml/datasets/car+evaluation] var_size is [4, 4, 4, 3, 3, 3, 4]. Car data contains 6 variables and one label with 4 possible values({'acc', 'good', 'unacc', 'vgood'}).
 
+Vae object contains method "compress", which can be used for encoding data to a latent dimension z. By varying beta we can see how smaller beta enables latent dimension distribution to differ from standard normal distribution.
+
+```python
+z=vae_olio.compress(X_train)
+```
+
 <img src="plots/carvae_many_beta.png" width="600">
