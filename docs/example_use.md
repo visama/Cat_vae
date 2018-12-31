@@ -7,5 +7,3 @@ z=vae_olio.compress(X_train)
 ```
 
 <img src="plots/carvae_many_beta.png" width="600">
-
-[Synthetic data](docs/Synth_data.md)
