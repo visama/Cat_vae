@@ -36,6 +36,8 @@ z=vae_olio.compress(X_train)
 
 <img src="plots/carvae_many_beta.png" width="600">
 
+[Synthetic data](docs/Synth_data.md)
+
 Method sample creates a sample X_s from the estimated distribution. We could use X_s to fit a classification model and use it for predicting labels in the test set.
 
 ```python
