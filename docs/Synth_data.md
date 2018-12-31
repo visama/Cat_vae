@@ -1,4 +1,4 @@
-#Synthetic data generation tutorial 
+## Synthetic data generation tutorial 
 
 Method sample creates a sample X_s from the estimated distribution. We could use X_s to fit a classification model and use it for predicting labels in the test set.
 
