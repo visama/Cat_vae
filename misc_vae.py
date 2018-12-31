@@ -94,4 +94,21 @@ def Loss_function(encoder_params, decoder_params, x,var_size,beta,mcmc_size):
     
     return(res  - beta*KL_div)
 
+def Reconstruction_prob(encoder_params, decoder_params,var_size,x): # x is matrix of samples
+    means, log_stds = unpack_gaussian_params2(neural_network(encoder_params, x))
+    z = create_z2(means, log_stds)
+    decoder_NN_output=neural_network(decoder_params, z)
+    res = np.zeros(x.shape[0])
+    paikka = 0
+    for i in range(len(var_size)):
+        probs = softmax(decoder_NN_output[:,paikka:paikka+var_size[i]])
+        res = res + np.sum(np.log(probs)*x[:,paikka:paikka+var_size[i]],axis=1)
+        paikka = paikka + var_size[i]
+    return(res)
+
+def Reconstruction_prob_multi(encoder_params, decoder_params,var_size,x,nro_samples):
+    res = np.zeros(x.shape[0])
+    for i in range(nro_samples):
+        res = res + Reconstruction_prob(encoder_params, decoder_params,var_size,x)/nro_samples
+    return(res)
         
