@@ -28,14 +28,10 @@ X_train should be numpy.ndarray in one-hot representation. Var_size should be a 
 
 T is the number of times NN parameters are updated, q is proportion of data points used in mini-batch SGD and s is the step size in mini-batch SGD. Layer size is the number of nodes in NN and z_dim is dimensionality of latent dimension. Here NNs have only one hidden layer, but also multilayer NNs are possible. Beta and mcmc are optional and are by default one. Beta one corresponds original VAE. Beta controls importance of Kullback-Leibler divergence in loss function [https://openreview.net/references/pdf?id=Sy2fzU9gl] and mcmc is the number of mcmc samples used for calculation of E[log(P(X_r|z))].
 
-VAE() creates a Vae object and initializes weights for boths NNs. Fit-method updates the weights with weights, that minimize the loss function. Vae object contains method compress, which can be used for encoding data to a latent dimension z. By varying beta we can see from the plot below, how smaller beta enables latent dimension distribution to differ from standard normal distribution. Encoder maps data points of the same class close to each other. If one wants to use VAE for synthetic data generation beta should be one. This is because we can create synthetic data by feeding the decoder data from multivariate normal distribution, since decoder is learned to map this kind of data.
-
-```python
-z=vae_olio.compress(X_train)
-```
-
-<img src="plots/carvae_many_beta.png" width="600">
+[Example use](docs/example_use.md)
 
 [Synthetic data](docs/Synth_data.md)
+
+
 
 
