@@ -1,4 +1,4 @@
-# Example use - fitting Vae-object and compressing data with encoder
+## Example use - fitting Vae-object and compressing data with encoder
 
 ```python
 from Cat_vae.Vae_object import Vae
