@@ -16,6 +16,6 @@ Synthetic data used, accuracy: 0.8598949211908932
 
 Based on this simple test synthetic data is somewhat usefull and conserves the structure of the original data! Perhaps by doing some hyperparameter tuning synthetic data quality could be improved. We could also inspect synthetic data quality visually by plotting the correlation matrices of both cases.
 
-<img src="Cat_vae/plots/Car correlation matrices.png" width="600">
+<img src="plots/Car correlation matrices.png" width="600">
 
 Synthetic data correlation matrix looks quite authentic although slightly too granural.
