@@ -38,7 +38,7 @@ Size of outlier data set: 358
 ```
 Nearly all of the outliers are among the data points with smallest probabilities! Reconstruction probabilities seems to be working a bit better here, than likelihood probabilities.
 
-But what does it mean for a multivariate categorical data point to be an outlier? We could select the data point given smallest and highest probability and find out. Remember, that the variable names are "buying price", "maintenance price", "number of doors", "capacity", "luggage boot size" and "safety". The label variable is "acceptability" of the car.
+But what does it mean for a multivariate categorical data point to be an outlier? We could select the data point given smallest and highest probability and find out. Remember, that the variable names are "buying price", "maintenance price", "number of doors", "capacity", "luggage boot size" and "safety". The label variable is "acceptability" of the car. Here the function "inverse_x_1hot" just transforms back a data point from 1-hot representation.
 
 ```python
 print("Lowest inlier: "+inverse_x_1hot(X_I[list(I_rec_probs).index(min(I_rec_probs))],var_size,data))
@@ -50,6 +50,7 @@ Lowest outlier: ['low', 'vhigh', '2', '2', 'med', 'low', 'vgood']
 Highest inlier: ['low', 'low', '5more', '4', 'big', 'high', 'vgood']
 Highest outlier: ['med', 'med', '5more', '4', 'med', 'high', 'acc']
 ```
+In general high price and low safety yields low acceptability and low price and high safety high acceptability. We can see how lor probability data points break this rule and high ones follow it. Thus it makes sense to call data points deemed as outlier by Vae as outliers.
 
 ## One class as outlier-class
 
