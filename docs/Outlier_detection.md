@@ -5,7 +5,7 @@ Car data has 6912 possible unique data points, but the sample size of the data i
 
 
 ```python
-###Method reconstruction_prob and likelihood can be used to calculate the needed probabilities
+# Method reconstruction_prob and likelihood can be used to calculate the needed probabilities
 O_rec_probs = vae_olio.reconstruction_prob(X_O,500)
 I_rec_probs = vae_olio.reconstruction_prob(X_I,500)
 
