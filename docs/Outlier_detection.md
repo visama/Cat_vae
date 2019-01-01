@@ -50,7 +50,7 @@ Lowest outlier: ['low', 'vhigh', '2', '2', 'med', 'low', 'vgood']
 Highest inlier: ['low', 'low', '5more', '4', 'big', 'high', 'vgood']
 Highest outlier: ['med', 'med', '5more', '4', 'med', 'high', 'acc']
 ```
-In general high price and low safety yields low acceptability and low price and high safety high acceptability. We can see how lor probability data points break this rule and high ones follow it. Thus it makes sense to call data points deemed as outlier by Vae as outliers.
+In general high price and low safety yields low acceptability and low price and high safety high acceptability. We can see how lor probability data points break this rule and high ones follow it. Thus it makes sense to call data points deemed as outlier by Vae as outliers. At least for the data points with the smallest probabilities.
 
 ## One class as outlier-class
 
