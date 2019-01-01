@@ -111,4 +111,21 @@ def Reconstruction_prob_multi(encoder_params, decoder_params,var_size,x,nro_samp
     for i in range(nro_samples):
         res = res + Reconstruction_prob(encoder_params, decoder_params,var_size,x)/nro_samples
     return(res)
+
+def Likelihood(z_dim,decoder_params,var_size,x): # x is matrix of samples
+    z = np.random.randn(x.shape[0],z_dim)
+    decoder_NN_output=neural_network(decoder_params, z)
+    res = np.zeros(x.shape[0])
+    paikka = 0
+    for i in range(len(var_size)):
+        probs = softmax(decoder_NN_output[:,paikka:paikka+var_size[i]])
+        res = res + np.sum(np.log(probs)*x[:,paikka:paikka+var_size[i]],axis=1)
+        paikka = paikka + var_size[i]
+    return(res)
+
+def Likelihood_multi(z_dim,decoder_params,var_size,x,nro_samples):
+    res = np.zeros(x.shape[0])
+    for i in range(nro_samples):
+        res = res + Likelihood(z_dim,decoder_params,var_size,x)/nro_samples
+    return(res)
         
