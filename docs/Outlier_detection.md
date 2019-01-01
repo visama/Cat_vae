@@ -24,9 +24,9 @@ all_probs_like = np.concatenate((I_likelihood_probs,O_likelihood_probs))
 sorted_probs_rec = np.sort(all_probs_rec)
 sorted_probs_like = np.sort(all_probs_like)
 
-threshold = X_O.shape[0]
-print("% of outliers among smallest rec-prob points: " + str(sum(O_rec_probs < sorted_probs_rec[threshold])/X_O.shape[0]))
-print("% of outliers among smallest likelihood-prob points: " + str(sum(O_likelihood_probs < sorted_probs_like[threshold])/X_O.shape[0]))
+n = X_O.shape[0]
+print("% of outliers among smallest rec-prob points: " + str(sum(O_rec_probs < sorted_probs_rec[n])/X_O.shape[0]))
+print("% of outliers among smallest likelihood-prob points: " + str(sum(O_likelihood_probs < sorted_probs_like[n])/X_O.shape[0]))
 print("% of outliers among all points points: " + str(X_O.shape[0]/(X_I.shape[0]+X_O.shape[0])))
 print("Size of all data points: " +str(X_O.shape[0]+X_I.shape[0]))
 % of outliers among smallest rec-prob points: 1.0
