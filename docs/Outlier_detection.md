@@ -29,15 +29,27 @@ print("% of outliers among smallest rec-prob points: " + str(sum(O_rec_probs < s
 print("% of outliers among smallest likelihood-prob points: " + str(sum(O_likelihood_probs < sorted_probs_like[n])/X_O.shape[0]))
 print("% of outliers among all points points: " + str(X_O.shape[0]/(X_I.shape[0]+X_O.shape[0])))
 print("Size of all data points: " +str(X_O.shape[0]+X_I.shape[0]))
+print("Size of outlier data set: " +str(X_O.shape[0]))
 % of outliers among smallest rec-prob points: 1.0
 % of outliers among smallest likelihood-prob points: 0.9357541899441341
 % of outliers among all points points: 0.38536060279870826
 Size of all data points: 929
+Size of outlier data set: 358
 ```
+Nearly all of the outliers are among the data points with smallest probabilities! Reconstruction probabilities seems to be working a bit better here, than likelihood probabilities.
 
+But what does it mean for a multivariate categorical data point to be an outlier? We could select the data point given smallest and highest probability and find out. Remember, that the variable names are "buying price", "maintenance price", "number of doors", "capacity", "luggage boot size" and "safety". The label variable is "acceptability" of the car.
 
-
-
+```python
+print("Lowest inlier: "+inverse_x_1hot(X_I[list(I_rec_probs).index(min(I_rec_probs))],var_size,data))
+print("Lowest outlier: "+inverse_x_1hot(X_O[list(O_rec_probs).index(min(O_rec_probs))],var_size,data))
+print("Highest inlier: "+inverse_x_1hot(X_I[list(I_rec_probs).index(max(I_rec_probs))],var_size,data))
+print("Highest outlier: "+inverse_x_1hot(X_O[list(O_rec_probs).index(max(O_rec_probs))],var_size,data))
+Lowest inlier: ['low', 'high', '3', 'more', 'med', 'high', 'vgood']
+Lowest outlier: ['low', 'vhigh', '2', '2', 'med', 'low', 'vgood']
+Highest inlier: ['low', 'low', '5more', '4', 'big', 'high', 'vgood']
+Highest outlier: ['med', 'med', '5more', '4', 'med', 'high', 'acc']
+```
 
 ## One class as outlier-class
 
