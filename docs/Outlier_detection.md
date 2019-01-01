@@ -14,7 +14,29 @@ I_likelihood_probs = vae_olio.likelihood(X_I,500)
 ```
 <img src="plots/outlier histograms.png" width="600">
 
-Based on the plots above it is clear, that outlier data points have indeed a smaller likelihood and reconstruction probabilities.
+Based on the plots above it is clear, that outlier data points have indeed a smaller likelihood and reconstruction probabilities. Next we could try to find out what is the proportion of outlier data points within n data points, that get the smallest probabilities. Here n  is the size of the outlier data set.
+
+```python
+#Join inlier and outlier probabilities and sort them
+all_probs_rec = np.concatenate((I_rec_probs,O_rec_probs))
+all_probs_like = np.concatenate((I_likelihood_probs,O_likelihood_probs))
+
+sorted_probs_rec = np.sort(all_probs_rec)
+sorted_probs_like = np.sort(all_probs_like)
+
+threshold = X_O.shape[0]
+print("% of outliers among smallest rec-prob points: " + str(sum(O_rec_probs < sorted_probs_rec[threshold])/X_O.shape[0]))
+print("% of outliers among smallest likelihood-prob points: " + str(sum(O_likelihood_probs < sorted_probs_like[threshold])/X_O.shape[0]))
+print("% of outliers among all points points: " + str(X_O.shape[0]/(X_I.shape[0]+X_O.shape[0])))
+print("Size of all data points: " +str(X_O.shape[0]+X_I.shape[0]))
+% of outliers among smallest rec-prob points: 1.0
+% of outliers among smallest likelihood-prob points: 0.9357541899441341
+% of outliers among all points points: 0.38536060279870826
+Size of all data points: 929
+```
+
+
+
 
 
 ## One class as outlier-class
