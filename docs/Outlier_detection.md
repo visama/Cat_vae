@@ -14,6 +14,7 @@ I_likelihood_probs = vae_olio.likelihood(X_I,500)
 ```
 <img src="plots/outlier histograms.png" width="600">
 
+Based on the plots above it is clear, that outlier data points have indeed a smaller likelihood and reconstruction probabilities.
 
 
 ## One class as outlier-class
