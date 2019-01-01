@@ -5,7 +5,7 @@ Created on Mon Dec 17 16:42:45 2018
 @author: visam
 """
 from Cat_vae.misc_vae import encode, neural_network
-from Cat_vae.misc_vae import init_net_params_xavier_2nd as init_net_params, Reconstruction_prob_multi
+from Cat_vae.misc_vae import init_net_params_xavier_2nd as init_net_params, Reconstruction_prob_multi, Likelihood_multi
 from Cat_vae.categorical_vae import cat_vae
 from Cat_vae.data_creation_and_metrics import reconstruction_cat_vae
 import autograd.numpy.random as npr
@@ -29,4 +29,8 @@ class Vae:
         
     def reconstruction_prob(self,X,n):
         return(Reconstruction_prob_multi(self.params_E, self.params_D,self.var_size,X,n))
+    
+    def likelihood(self,x,n):
+        return(Likelihood_multi(self.decoder_layer_size[0],self.params_D,self.var_size,x,n))
+      
      
