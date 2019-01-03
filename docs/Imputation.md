@@ -1,6 +1,6 @@
 ## Vae-imputation of multivariate categorical data
 
-Here we follow an example of [1] in our vae-imputation experiments. Idea is to again use
+Here we follow the example of [1] in our vae-imputation experiments. Idea is again to use
 likelihood probabilities and consider a data point likely is it's attached with high probability. Algorithm for imputating one data point x is
 
 1. Fit Vae using the training set X_train
@@ -18,3 +18,5 @@ Paper [1] doesn't mention using histogram of training set probabilities as a met
 
 Refs
 [1] John T. McCoy et al.: Variational Autoencoders for Missing Data Imputation with Application to a Simulated Milling Circuit
+
+## Imputation of Car-data set with missing values
