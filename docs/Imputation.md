@@ -16,7 +16,7 @@ likelihood probabilities and consider a data point likely is it's attached with 
 Paper [1] doesn't mention using histogram of training set probabilities as a method for finding h, but idea is to reject data points that are deemed very unlikely by Vae. Alfa could perhaps be 0.05 or 0.1.
 
 
-Refs
+## References
 [1] John T. McCoy et al.: Variational Autoencoders for Missing Data Imputation with Application to a Simulated Milling Circuit
 
 ## Imputation of Car-data set with missing values
