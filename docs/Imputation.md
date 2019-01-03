@@ -1,7 +1,7 @@
 ## Vae-imputation of multivariate categorical data
 
 Here we follow the example of [1] in our vae-imputation experiments. Idea is again to use
-likelihood probabilities and consider a data point likely is it's attached with high probability. Algorithm for imputating one data point x is
+likelihood probabilities and consider a data point likely is it's attached with a high probability. Algorithm for imputating one data point x is
 
 1. Fit Vae using the training set X_train
 
