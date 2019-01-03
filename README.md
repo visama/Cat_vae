@@ -14,7 +14,7 @@ Vae is a versatile tool and it could be used in synthetic data generation, anoma
 
 [Synthetic data](docs/Synth_data.md)
 
-[Outlier_detection](docs/Outlier_detection.md)
+[Outlier detection](docs/Outlier_detection.md)
 
 [Imputation](docs/Imputation.md)
 
